@@ -63,9 +63,9 @@ public class PlayerScript : MonoBehaviour
         }
 
     }
-            void Shoot()
-            {
-                 Instantiate(bulletPrefab, firePointLeft.position, firePointLeft.rotation);
-                 Instantiate(bulletPrefab,firePointRight.position, firePointRight.rotation);
-            }
+    void Shoot()
+    {
+        Instantiate(bulletPrefab, firePointLeft.position, firePointLeft.rotation);
+        Instantiate(bulletPrefab,firePointRight.position, firePointRight.rotation);
+    }
 }

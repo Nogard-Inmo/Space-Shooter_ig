@@ -21,15 +21,15 @@ public class Enemy : MonoBehaviour
     {
         points = FindAnyObjectByType<ScoreManager>();
         player = GameObject.FindGameObjectWithTag("Player");
-        SetEnemyValues();
+        //SetEnemyValues();
     }
 
-    private void SetEnemyValues()
+    /*private void SetEnemyValues()
     {
         GetComponent<Health>().SetHealth(data.hp, data.hp);
         damage = data.damage;
         speed = data.speed;
-    }
+    }*/
 
     private void Update()
     {
@@ -39,6 +39,11 @@ public class Enemy : MonoBehaviour
     private void Chase()//the enemy moves to were the player is
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+
+        //rotation
+        Vector2 dir = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
+
+        transform.up = dir;
     }
 
     private void OnTriggerEnter2D(Collider2D collider) //damages the player

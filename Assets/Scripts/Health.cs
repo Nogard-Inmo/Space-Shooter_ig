@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -57,6 +58,10 @@ public class Health : MonoBehaviour
         if (CompareTag("Enemy"))
         {
             points.score += 100;
+        }
+        if (CompareTag("Player"))
+        {
+            SceneManager.LoadScene(8);
         }
         Destroy(gameObject);
     }

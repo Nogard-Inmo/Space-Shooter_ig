@@ -13,10 +13,7 @@ public class Bullet : MonoBehaviour
         rb.linearVelocity = transform.up * speed;
     }
 
-    private void Update()
-    {
-        
-    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
 
@@ -24,17 +21,11 @@ public class Bullet : MonoBehaviour
         {
             Health health = collider.GetComponent<Health>();
             health.Damage(damage);
+            Destroy(gameObject);
         }
 
-        else
-        {
-            Deletee();
-        }
+        
 
     }
-    private IEnumerator Deletee()
-    {
-        yield return new WaitForSeconds(0.45f);
-        Destroy(gameObject);
-    }
+
 }
