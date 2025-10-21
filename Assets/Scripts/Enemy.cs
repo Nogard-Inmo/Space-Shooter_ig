@@ -7,7 +7,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class Enemy : MonoBehaviour
 {
     public int health = 80;
-    
+    public GameObject enemy;
     ScoreManager points;
     private void Start()
     {
@@ -35,8 +35,13 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         points.score += 100;
         print("points?");
+        Instantiate(enemy);
         Destroy(gameObject);
         
+
+
+
+
     }
 
 }
