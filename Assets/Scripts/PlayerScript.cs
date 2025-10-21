@@ -3,14 +3,18 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     //Movement
-    KeyCode left = KeyCode.LeftArrow ;
-    KeyCode right = KeyCode.RightArrow;
-    KeyCode up = KeyCode.UpArrow;
-    KeyCode down = KeyCode.DownArrow;
-    KeyCode shoot = KeyCode.Space;
-
+    [SerializeField] KeyCode left = KeyCode.LeftArrow ;
+    [SerializeField] KeyCode right = KeyCode.RightArrow;
+    [SerializeField] KeyCode up = KeyCode.UpArrow;
+    [SerializeField] KeyCode down = KeyCode.DownArrow;
+    [SerializeField] KeyCode shoot = KeyCode.Space;
 
     [SerializeField, Range(1,3)] float speed;
+
+    //weapon
+    public Transform firePointRight;
+    public Transform firePointLeft;
+    public GameObject bulletPrefab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,12 +48,6 @@ public class PlayerScript : MonoBehaviour
             transform.position -= new Vector3(0, 1, 0) * speed * Time.deltaTime;
         }
 
-        //gun
-        if (Input.GetKeyDown(shoot))
-        {
-            print("shoot");
-
-        }
 
         //rotation
         Vector3 mousePos = Input.mousePosition;
@@ -58,5 +56,18 @@ public class PlayerScript : MonoBehaviour
         Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
 
         transform.up = dir;
+
+        //gun
+        if (Input.GetKeyDown(shoot))
+        {
+            print("shoot");
+            Shoot();
+        }
+
     }
+            void Shoot()
+            {
+                 Instantiate(bulletPrefab, firePointLeft.position, firePointLeft.rotation);
+                 Instantiate(bulletPrefab,firePointRight.position, firePointRight.rotation);
+            }
 }
