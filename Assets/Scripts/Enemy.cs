@@ -1,47 +1,62 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 80;
-    public GameObject enemy;
+    //enemy stats
+    [SerializeField] int damage;
+    [SerializeField] float speed;
+    private EnemyData data;
+    private GameObject player;
+
+    //Score
     ScoreManager points;
+
     private void Start()
     {
         points = FindAnyObjectByType<ScoreManager>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        SetEnemyValues();
     }
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Die();
 
+    private void SetEnemyValues()
+    {
+        GetComponent<Health>().SetHealth(data.hp, data.hp);
+        damage = data.damage;
+        speed = data.speed;
+    }
+
+    private void Update()
+    {
+        Chase();
+    }
+
+    private void Chase()//the enemy moves to were the player is
+    {
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider) //damages the player
+    {
+        if (collider.CompareTag("Player"))
+        {
+            if(collider.GetComponent<Health>() != null)
+            {
+                collider.GetComponent<Health>().Damage(damage);
+
+                
+
+            }
         }
     }
-    void Die()
-    {
-        print("die");
-        StartCoroutine(Death());
-        
-
-    }
-    IEnumerator Death()
-    {
-        print("death?");
-        yield return new WaitForSeconds(0.5f);
-        points.score += 100;
-        print("points?");
-        Instantiate(enemy);
-        Destroy(gameObject);
-        
 
 
 
-
-    }
+    
 
 }

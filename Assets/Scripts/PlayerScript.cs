@@ -28,13 +28,11 @@ public class PlayerScript : MonoBehaviour
         //movement
         if (Input.GetKey(left))
         {
-            print("left");
             transform.position -= new Vector3(1, 0, 0) * speed * Time.deltaTime;
         }
 
         if (Input.GetKey(right))
         {
-            print("Right");
             transform.position += new Vector3(1, 0, 0) * speed * Time.deltaTime;
         }
        
