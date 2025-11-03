@@ -17,27 +17,27 @@ public class WeaponSelectionUI : MonoBehaviour
 
     public void NormalGun()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
     }
 
     public void Shotgun()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(3);
     }
 
     public void Minigun()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(4);
     }
 
     public void Pulsegun()
     {
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(5);
     }
 
     public void Railgun()
     {
-        SceneManager.LoadScene(7);
+        SceneManager.LoadScene(6);
     }
 
 }
