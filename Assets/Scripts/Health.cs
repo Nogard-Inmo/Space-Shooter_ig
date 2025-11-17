@@ -3,6 +3,7 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Health : MonoBehaviour
 {
     [SerializeField] int health = 3;
@@ -13,7 +14,7 @@ public class Health : MonoBehaviour
 
     //Score
     ScoreManager points;
-
+    LeaderboardManager score;
 
     public void Start()
     {
@@ -63,11 +64,14 @@ public class Health : MonoBehaviour
 
         if (CompareTag("Enemy"))
         {
+            ScoreManager.Instance.AddPoints(100);
             Destroy(gameObject);
-            points.score += 100;
         }
         if (CompareTag("Player"))
         {
+            Debug.Log("Saving score: " + points.score);
+            LeaderboardManager.Instance.SaveScore(points.score);
+
             SceneManager.LoadScene(7);
         }
         

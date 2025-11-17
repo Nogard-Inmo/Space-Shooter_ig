@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor.VersionControl;
-using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEditor.Experimental.GraphView;
+#endif
 
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {

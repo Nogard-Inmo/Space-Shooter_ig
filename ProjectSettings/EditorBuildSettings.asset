@@ -14,6 +14,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NormalGun.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Shotgun.unity
+    guid: 59838a8f20a0182499e707b7c1873818
+  - enabled: 1
+    path: Assets/Scenes/Minigun.unity
+    guid: 4d04914ee2911bb43836a4b053808e39
+  - enabled: 1
+    path: Assets/Scenes/Pulsegun.unity
+    guid: f96256850e5ae63468b3ccf0ae144914
+  - enabled: 1
+    path: Assets/Scenes/Railgun.unity
+    guid: 7a92dd823e3f1c44b8491584d5558036
+  - enabled: 1
+    path: Assets/Scenes/GameOverScreen.unity
+    guid: fc331ef0f57b98148a21670dba3b7e40
+  - enabled: 1
+    path: Assets/Scenes/LeaderboardScene.unity
+    guid: 890d6f341d09b0b468fc2e53b573ba46
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
