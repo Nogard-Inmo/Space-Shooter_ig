@@ -8,25 +8,38 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;                  // Assign your bullet prefab in the Inspector
     public Transform firePoint1;                    // Assign the fire point in the Inspector
     public Transform firePoint2;                   // Assign the fire point in the Inspector
-    public int bulletCount = 9;                   // Number of bullets to fire
+    public int bulletCount = 9;                   // Number of bullets to fire(it can't be 1
     public float spreadAngle = 45f;              // Total spread angle in degrees
     public float fireCooldown = 1f;             // Cooldown in seconds
     private float lastFireTime = -Mathf.Infinity;
-
+    [SerializeField]private bool isMinugun = false;
     // Update is called once per frame
     void Update()
     {
 
 
         //shooting
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= lastFireTime + fireCooldown)
+        
+        if (isMinugun == false)
         {
-            lastFireTime = Time.time;
-            ShootgunShoot();
+            if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= lastFireTime + fireCooldown)
+            {
+                lastFireTime = Time.time;
+                Shoot();
+            }
         }
+        else
+        {
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                lastFireTime = Time.time;
+                Shoot();
+            }
+        }
+
     }
 
-    void ShootgunShoot()
+    void Shoot()
     {
         float angleStep = spreadAngle / (bulletCount - 1);
         float startAngle = -spreadAngle / 2;

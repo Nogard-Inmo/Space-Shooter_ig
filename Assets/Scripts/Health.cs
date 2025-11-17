@@ -8,6 +8,9 @@ public class Health : MonoBehaviour
     [SerializeField] int health = 3;
     int maxHealth = 5;
 
+    private bool isDead = false; // Prevent multiple deaths
+
+
     //Score
     ScoreManager points;
 
@@ -55,6 +58,9 @@ public class Health : MonoBehaviour
 
     private void die()
     {
+        if (isDead) return;
+        isDead = true;
+
         if (CompareTag("Enemy"))
         {
             Destroy(gameObject);

@@ -782,7 +782,7 @@ Transform:
   m_GameObject: {fileID: 1109972490}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.34, y: 0.474, z: 0}
+  m_LocalPosition: {x: -0.32, y: 0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1102,7 +1102,7 @@ Transform:
   m_GameObject: {fileID: 2043447811}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.31, y: 0.474, z: 0}
+  m_LocalPosition: {x: 0.31, y: 0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1222,7 +1222,7 @@ Transform:
   m_GameObject: {fileID: 2137479429}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.402, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1279,13 +1279,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba947ad735965c488d3507d8d2a14e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6650725767684639030, guid: 2073a90a02e653442a7c5b5be4214f26, type: 3}
+  bulletPrefab: {fileID: 6650725767684639030, guid: d3bf17f32b396b24cb028569700b80b3, type: 3}
   firePoint1: {fileID: 1109972491}
   firePoint2: {fileID: 2043447812}
   bulletCount: 2
   spreadAngle: 0
-  fireCooldown: 0.1
-  isMinugun: 0
+  fireCooldown: 0
+  isMinugun: 1
 --- !u!114 &2137479436
 MonoBehaviour:
   m_ObjectHideFlags: 0

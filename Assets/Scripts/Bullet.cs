@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] float projectileDeleatSpeed = 1f;
     public int damage = 40;
     [SerializeField] bool moving;
-
+    [SerializeField] bool hitDestroy = true;
     void Start()
     {
         if (moving == true)
@@ -32,7 +32,10 @@ public class Bullet : MonoBehaviour
             {
                 Health health = collider.GetComponent<Health>();
                 health.Damage(damage);
-                Destroy(gameObject);
+                if (hitDestroy==true)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 

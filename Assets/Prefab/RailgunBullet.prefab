@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7442466631067982073}
   - component: {fileID: -383182287766127990}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: RailgunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 6650725767684639030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0079, y: 3.9714, z: 0}
-  m_LocalScale: {x: 0.1101, y: 0.1101, z: 1}
+  m_LocalPosition: {x: -1.01, y: 3.9409, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -166,9 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba88be1170962747be7ea2712c476c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 30
   rb: {fileID: 2900601066316228558}
-  projectileDeleatSpeed: 1
-  damage: 40
+  projectileDeleatSpeed: 0.5
+  damage: 400
   moving: 1
-  hitDestroy: 1
