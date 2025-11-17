@@ -168,3 +168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   rb: {fileID: 2900601066316228558}
+  projectileDeleatSpeed: 1
+  damage: 40
+  moving: 1

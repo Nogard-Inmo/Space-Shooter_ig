@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour
     //enemy stats
     [SerializeField] int damage;
     [SerializeField] float speed;
-    private EnemyData data;
     private GameObject player;
 
     //Score
@@ -21,15 +20,7 @@ public class Enemy : MonoBehaviour
     {
         points = FindAnyObjectByType<ScoreManager>();
         player = GameObject.FindGameObjectWithTag("Player");
-        //SetEnemyValues();
     }
-
-    /*private void SetEnemyValues()
-    {
-        GetComponent<Health>().SetHealth(data.hp, data.hp);
-        damage = data.damage;
-        speed = data.speed;
-    }*/
 
     private void Update()
     {
@@ -46,13 +37,13 @@ public class Enemy : MonoBehaviour
         transform.up = dir;
     }
 
-    private void OnTriggerEnter2D(Collider2D collider) //damages the player
+    private void OnCollisionEnter2D(Collision2D collision) //damages the player
     {
-        if (collider.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if(collider.GetComponent<Health>() != null)
+            if(collision.gameObject.GetComponent<Health>() != null)
             {
-                collider.GetComponent<Health>().Damage(damage);
+                collision.gameObject.GetComponent<Health>().Damage(damage);
 
                 
 

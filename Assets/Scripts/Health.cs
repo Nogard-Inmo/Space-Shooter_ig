@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Health : MonoBehaviour
 {
     [SerializeField] int health = 3;
-    int MAX_HEALTH = 5;
+    int maxHealth = 5;
 
     //Score
     ScoreManager points;
@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
     public void SetHealth(int maxhealth, int health)
     {
         this.health = health;
-        this.MAX_HEALTH = maxhealth;
+        this.maxHealth = maxhealth;
     }
 
     public void Damage(int amount)
@@ -37,33 +37,34 @@ public class Health : MonoBehaviour
     }
 
      public void Heal(int amount)
-    {
+     {
         if (amount < 0)
         {
             throw new System.ArgumentOutOfRangeException("Can not have negative healing!");
         }
         
-        if (health +  amount > MAX_HEALTH)//makes it so you can't overheal
+        if (health +  amount > maxHealth)//makes it so you can't overheal
         {
-            this.health = MAX_HEALTH;
+            this.health = maxHealth;
         }
         else
         {
             this.health = amount;
         }
-    }
+     }
 
     private void die()
     {
         if (CompareTag("Enemy"))
         {
+            Destroy(gameObject);
             points.score += 100;
         }
         if (CompareTag("Player"))
         {
-            SceneManager.LoadScene(8);
+            SceneManager.LoadScene(7);
         }
-        Destroy(gameObject);
+        
     }
 
 }

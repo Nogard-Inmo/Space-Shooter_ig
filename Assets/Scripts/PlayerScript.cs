@@ -3,69 +3,84 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     //Movement
-    [SerializeField] KeyCode left = KeyCode.LeftArrow ;
+    [SerializeField] KeyCode left = KeyCode.LeftArrow;
     [SerializeField] KeyCode right = KeyCode.RightArrow;
     [SerializeField] KeyCode up = KeyCode.UpArrow;
     [SerializeField] KeyCode down = KeyCode.DownArrow;
-    [SerializeField] KeyCode shoot = KeyCode.Space;
+    [SerializeField] KeyCode dash = KeyCode.Space;
 
-    [SerializeField, Range(1,3)] float speed;
+    [SerializeField] float speed = 6f;
+    [SerializeField] float dashSpeed = 18f;
+    [SerializeField] float dashDuration = 0.3f;
+    [SerializeField] float dashCooldownTime = 1f;
 
-    //weapon
-    public Transform firePointRight;
-    public Transform firePointLeft;
-    public GameObject bulletPrefab;
+    Rigidbody2D rb;
+    Vector2 moveInput;
+    Vector2 dashDirection;
+    bool isDashing = false;
+    bool canDash = true;
+    float dashTimer = 0.2f;
+    float dashCooldown = 1f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //movement
-        if (Input.GetKey(left))
+        // Get movement input
+        moveInput = Vector2.zero;
+        if (Input.GetKey(left)) moveInput.x -= 1;
+        if (Input.GetKey(right)) moveInput.x += 1;
+        if (Input.GetKey(up)) moveInput.y += 1;
+        if (Input.GetKey(down)) moveInput.y -= 1;
+        moveInput = moveInput.normalized;
+
+        // Dash input
+        if (Input.GetKeyDown(dash) && canDash)
         {
-            transform.position -= new Vector3(1, 0, 0) * speed * Time.deltaTime;
+            isDashing = true;
+            canDash = false;
+            dashTimer = 0f;
+            dashDirection = moveInput == Vector2.zero ? transform.up : moveInput;
         }
 
-        if (Input.GetKey(right))
+        // Cooldown timer
+        if (!canDash)
         {
-            transform.position += new Vector3(1, 0, 0) * speed * Time.deltaTime;
-        }
-       
-        if (Input.GetKey(up))
-        {
-            transform.position += new Vector3(0, 1, 0) * speed * Time.deltaTime;
-        }
-        
-        if (Input.GetKey(down))
-        {
-            transform.position -= new Vector3(0, 1, 0) * speed * Time.deltaTime;
+            dashCooldown += Time.deltaTime;
+            if (dashCooldown >= dashCooldownTime)
+            {
+                canDash = true;
+                dashCooldown = 0f;
+            }
         }
 
-
-        //rotation
-        Vector3 mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-
-        Vector2 dir = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
-
-        transform.up = dir;
-
-        //gun
-        if (Input.GetKeyDown(shoot))
-        {
-            print("shoot");
-            Shoot();
-        }
+        // Rotate to face mouse
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 aimDir = (mousePos - transform.position).normalized;
+        transform.up = aimDir;
 
     }
-    void Shoot()
+    void FixedUpdate()
     {
-        Instantiate(bulletPrefab, firePointLeft.position, firePointLeft.rotation);
-        Instantiate(bulletPrefab,firePointRight.position, firePointRight.rotation);
+        if (isDashing)
+        {
+            rb.linearVelocity = dashDirection * dashSpeed;
+            dashTimer += Time.fixedDeltaTime;
+            if (dashTimer >= dashDuration)
+            {
+                isDashing = false;
+                rb.linearVelocity = Vector2.zero;
+            }
+        }
+        else
+        {
+            rb.linearVelocity = moveInput * speed;
+        }
     }
+
 }

@@ -1,16 +1,25 @@
 using System.Collections;
+using System.Data;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     public float speed = 20f;
-    public int damage = 40;
     public Rigidbody2D rb;
+    [SerializeField] float projectileDeleatSpeed = 1f;
+    public int damage = 40;
+    [SerializeField] bool moving;
 
     void Start()
     {
-        rb.linearVelocity = transform.up * speed;
+        if (moving == true)
+        {
+            rb.linearVelocity = transform.up * speed;
+        }
+
+
+        StartCoroutine(SelfDestroy());
     }
 
 
@@ -19,13 +28,21 @@ public class Bullet : MonoBehaviour
 
         if (collider.GetComponent<Health>() != null)
         {
-            Health health = collider.GetComponent<Health>();
-            health.Damage(damage);
-            Destroy(gameObject);
+            if (collider.CompareTag("Enemy"))
+            {
+                Health health = collider.GetComponent<Health>();
+                health.Damage(damage);
+                Destroy(gameObject);
+            }
         }
 
         
 
+    }
+    private IEnumerator SelfDestroy()
+    {
+        yield return new WaitForSeconds(projectileDeleatSpeed);
+        Destroy(gameObject);
     }
 
 }

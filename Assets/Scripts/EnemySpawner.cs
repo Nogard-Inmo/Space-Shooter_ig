@@ -33,9 +33,21 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator spawnEnemy(float interval, GameObject enemy)
     {
         yield return new WaitForSeconds(interval);
-        GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-8f, 8f), Random.Range(-8f, 8f), 0), Quaternion.identity);
+
+        Vector3 spawnPosition;
+        int maxAttempts = 10;
+        int attempts = 0;
+        float minDistance = 2f; // Minimum distance from spawner/player
+
+        do
+        {
+            spawnPosition = new Vector3(Random.Range(-8f, 8f), Random.Range(-8f, 8f), 0);
+            attempts++;
+        }
+        while (Vector3.Distance(spawnPosition, transform.position) < minDistance && attempts < maxAttempts);
+
+        Instantiate(enemy, spawnPosition, Quaternion.identity);
         StartCoroutine(spawnEnemy(interval, enemy));
     }
-
 
 }
