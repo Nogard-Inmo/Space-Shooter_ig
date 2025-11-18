@@ -5,7 +5,7 @@ public class GameOverMenu : MonoBehaviour
 {
     public void MainMenu()
     {
-        ScoreManager.Instance.ResetScore();
+        ScoreManager.Instance.ResetScore();//resets score
         SceneManager.LoadScene(0);
     }
     public void LeaderboardMenu()

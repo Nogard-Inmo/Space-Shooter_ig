@@ -11,7 +11,7 @@ public class LeaderboardDisplay : MonoBehaviour
     {
         List<int> scores = LeaderboardManager.Instance.LoadScores();
 
-        for (int i = 0; i < scores.Count; i++)
+        for (int i = 0; i < scores.Count; i++) // loads a prefab and set the score to show the leaderboard
         {
             GameObject entry = Instantiate(scoreEntryPrefab, scoreContainer);
             entry.GetComponent<TMPro.TextMeshProUGUI>().text = $"{i + 1}. Score: {scores[i]}";

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ScreenWrap : MonoBehaviour
+public class ScreenWrap : MonoBehaviour //makes it so that the player can go from top to bottom, right to left based on the camera
 {
     private Camera mainCamera;
     private Vector3 screenBounds;

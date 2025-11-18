@@ -62,17 +62,16 @@ public class Health : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        if (CompareTag("Enemy"))
+        if (CompareTag("Enemy"))//adds score and destroys the enemy
         {
             ScoreManager.Instance.AddPoints(100);
             Destroy(gameObject);
         }
         if (CompareTag("Player"))
         {
-            Debug.Log("Saving score: " + points.score);
-            LeaderboardManager.Instance.SaveScore(points.score);
+            LeaderboardManager.Instance.SaveScore(points.score);//saves score to the leaderboard when the player dies
 
-            SceneManager.LoadScene(7);
+            SceneManager.LoadScene(7);//loads game over scene when the player dies
         }
         
     }

@@ -3,18 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class WeaponSelectionUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //changes scenes
     public void NormalGun()
     {
         SceneManager.LoadScene(2);

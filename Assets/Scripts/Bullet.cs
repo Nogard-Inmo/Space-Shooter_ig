@@ -7,13 +7,13 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 20f;
     public Rigidbody2D rb;
-    [SerializeField] float projectileDeleatSpeed = 1f;
+    [SerializeField] float projectileDeleatSpeed = 1f; // time until it destroys itself
     public int damage = 40;
     [SerializeField] bool moving;
     [SerializeField] bool hitDestroy = true;
     void Start()
     {
-        if (moving == true)
+        if (moving == true)//if it should move or not
         {
             rb.linearVelocity = transform.up * speed;
         }
@@ -28,11 +28,11 @@ public class Bullet : MonoBehaviour
 
         if (collider.GetComponent<Health>() != null)
         {
-            if (collider.CompareTag("Enemy"))
+            if (collider.CompareTag("Enemy"))//makes it so that bullets only hurt the enemies and not the player
             {
                 Health health = collider.GetComponent<Health>();
                 health.Damage(damage);
-                if (hitDestroy==true)
+                if (hitDestroy==true)//if it has penetration or not
                 {
                     Destroy(gameObject);
                 }
@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
 
         
 
-    }
+    }//waits until it destroys itself if it did not hit anything
     private IEnumerator SelfDestroy()
     {
         yield return new WaitForSeconds(projectileDeleatSpeed);

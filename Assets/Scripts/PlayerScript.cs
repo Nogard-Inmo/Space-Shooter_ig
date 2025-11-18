@@ -67,7 +67,7 @@ public class PlayerScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (isDashing)
+        if (isDashing)//dash
         {
             rb.linearVelocity = dashDirection * dashSpeed;
             dashTimer += Time.fixedDeltaTime;

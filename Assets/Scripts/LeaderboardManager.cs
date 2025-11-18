@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LeaderboardManager : MonoBehaviour
 {
-    private const int MaxEntries = 20;
+    private const int MaxEntries = 6;
     private const string ScoreKey = "HighScore";
 
     public static LeaderboardManager Instance;
@@ -48,7 +48,7 @@ public class LeaderboardManager : MonoBehaviour
         return scores;
     }
 
-    [ContextMenu("Clear Leaderboard")]
+    [ContextMenu("Clear Leaderboard")]// system to manually clear the leaderboard from unity editor
     public void ClearLeaderboard()
     {
         for (int i = 0; i < MaxEntries; i++)
